@@ -506,4 +506,51 @@ vector<int> findPrincipalChain()
         }
         return score;
     }
+  pair<map<int, int>, map<string, vector<int>>> numberChainAndFindSubstituents(const vector<int> &chain)
+    {
+        map<int, int> numberingA, numberingB;
+        for (size_t i = 0; i < chain.size(); ++i)
+        {
+            numberingA[chain[i]] = i + 1;
+        }
+        for (size_t i = 0; i < chain.size(); ++i)
+        {
+            numberingB[chain[chain.size() - 1 - i]] = i + 1;
+        }
+        map<string, vector<int>> subsA = getSubstituents(chain, numberingA);
+        map<string, vector<int>> subsB = getSubstituents(chain, numberingB);
+        LocantSet locantsA = getLocantList(chain, numberingA, subsA);
+        LocantSet locantsB = getLocantList(chain, numberingB, subsB);
+        if (locantsA < locantsB)
+        {
+            return make_pair(numberingA, subsA);
+        }
+        else if (locantsB < locantsA)
+        {
+            return make_pair(numberingB, subsB);
+        }
+        else
+        {
+            if (locantsA.eneYneTieBreaker(locantsB))
+            {
+                return make_pair(numberingA, subsA);
+            }
+            else if (locantsB.eneYneTieBreaker(locantsA))
+            {
+                return make_pair(numberingB, subsB);
+            }
+            string subsA_alpha = getAlphabeticalSubList(subsA);
+            string subsB_alpha = getAlphabeticalSubList(subsB);
+            if (subsA_alpha <= subsB_alpha)
+            {
+                return make_pair(numberingA, subsA);
+            }
+            else
+            {
+                return make_pair(numberingB, subsB);
+            }
+        }
+    }
+
+    
 };
