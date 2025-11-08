@@ -144,4 +144,4 @@ public:
         atoms[u].neighbors[v] = bondType;
         atoms[v].neighbors[u] = bondType;
     }
-
+};
