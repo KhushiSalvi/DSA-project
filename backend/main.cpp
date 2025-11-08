@@ -144,6 +144,34 @@ public:
         atoms[u].neighbors[v] = bondType;
         atoms[v].neighbors[u] = bondType;
     }
+
+ // --- Structure -> Name ---
+    string getIUPACName()
+    {
+        if (atoms.empty())
+            return "Empty Molecule";
+        this->is_cyclic = isCyclic();
+        findFunctionalGroups();
+        vector<int> chain = findPrincipalChain();
+        if (chain.empty())
+            return "Error: No chain found.";
+
+        if (chain.size() == 1)
+        {
+            if (highest_priority_group == "acid")
+                return "methanoic acid";
+            if (highest_priority_group == "aldehyde")
+                return "methanal";
+            return "methane";
+        }
+
+        pair<map<int, int>, map<string, vector<int>>> result = numberChainAndFindSubstituents(chain);
+        map<int, int> numbering = result.first;
+        map<string, vector<int>> substituents = result.second;
+        return assembleName(chain, numbering, substituents);
+    }
+
+
 void printAdjacencyList()
     {
         cout << "--- Generated Graph (Adjacency List) ---" << endl;
