@@ -648,4 +648,56 @@ LocantSet getLocantList(const vector<int> &chain, const map<int, int> &numbering
         }
         return count;
     }
+string assembleName(const vector<int> &chain, const map<int, int> &numbering, const map<string, vector<int>> &substituents)
+    {
+        stringstream ss;
+        vector<string> sub_names;
+        for (map<string, vector<int>>::const_iterator it = substituents.begin(); it != substituents.end(); ++it)
+        {
+            sub_names.push_back(it->first);
+        }
+        sort(sub_names.begin(), sub_names.end());
+
+        for (const string &name : sub_names)
+        {
+            auto locs = substituents.at(name);
+            sort(locs.begin(), locs.end());
+            for (size_t i = 0; i < locs.size(); ++i)
+            {
+                ss << locs[i] << (i < locs.size() - 1 ? "," : "-");
+            }
+            ss << PREFIX_NAME[locs.size()] << name << "-";
+        }
+
+        string prefix = is_cyclic ? "cyclo" : "";
+        string parent = prefix + ALKANE_NAME[chain.size()];
+
+        map<int, int> double_bonds, triple_bonds;
+        for (map<int, int>::const_iterator it = numbering.begin(); it != numbering.end(); ++it)
+        {
+            int u = it->first;
+            int num = it->second;
+            for (map<int, int>::const_iterator nit = atoms[u].neighbors.begin(); nit != atoms[u].neighbors.end(); ++nit)
+            {
+                int v = nit->first;
+                int bond = nit->second;
+                if (numbering.count(v) && numbering.at(v) > num)
+                {
+                    if (bond == 2)
+                        double_bonds[num] = 2;
+                    if (bond == 3)
+                        triple_bonds[num] = 3;
+                }
+            }
+        }
+
+        vector<int> db_locs, tb_locs;
+        for (map<int, int>::const_iterator it = double_bonds.begin(); it != double_bonds.end(); ++it)
+            db_locs.push_back(it->first);
+        for (map<int, int>::const_iterator it = triple_bonds.begin(); it != triple_bonds.end(); ++it)
+            tb_locs.push_back(it->first);
+        sort(db_locs.begin(), db_locs.end());
+        sort(tb_locs.begin(), tb_locs.end());
+
+        string multiple_bond_suffix = "";}
 };
