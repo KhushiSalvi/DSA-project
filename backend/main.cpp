@@ -482,4 +482,28 @@ vector<int> findPrincipalChain()
             all_paths.push_back(current_path);
         visited.erase(u);
     }
+
+
+    PathScore scorePath(const vector<int> &path)
+    {
+        PathScore score;
+        score.length = path.size();
+        for (int u : path)
+        {
+            if (principal_group_atoms.count(u))
+            {
+                score.priority_group_count++;
+            }
+        }
+        for (size_t i = 0; i < path.size() - 1; ++i)
+        {
+            int u = path[i];
+            int v = path[i + 1];
+            if (atoms[u].neighbors.count(v) && atoms[u].neighbors.at(v) > 1)
+            {
+                score.multiple_bond_count++;
+            }
+        }
+        return score;
+    }
 };
