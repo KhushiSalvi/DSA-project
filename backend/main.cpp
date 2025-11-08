@@ -603,5 +603,34 @@ LocantSet getLocantList(const vector<int> &chain, const map<int, int> &numbering
         sort(locants.substituents.begin(), locants.substituents.end());
         return locants;
     }
+
+    map<string, vector<int>> getSubstituents(const vector<int> &chain, const map<int, int> &numbering)
+    {
+        map<string, vector<int>> substituents;
+        set<int> main_chain_nodes(chain.begin(), chain.end());
+        set<int> visited;
+        for (int chain_atom_id : chain)
+        {
+            int location = numbering.at(chain_atom_id);
+            for (map<int, int>::const_iterator it = atoms[chain_atom_id].neighbors.begin(); it != atoms[chain_atom_id].neighbors.end(); ++it)
+            {
+                int neighbor_id = it->first;
+                if (main_chain_nodes.find(neighbor_id) == main_chain_nodes.end() &&
+                    visited.find(neighbor_id) == visited.end() &&
+                    atoms[neighbor_id].element == "C")
+                {
+                    int size = dfs_subst_size(neighbor_id, visited, main_chain_nodes);
+                    string name = SUBST_NAME.count(size) ? SUBST_NAME[size] : "unknown";
+                    substituents[name].push_back(location);
+                }
+            }
+            string group = atoms[chain_atom_id].functional_group;
+            if (group != "none" && group != highest_priority_group && GROUP_PREFIX.count(group))
+            {
+                substituents[GROUP_PREFIX.at(group)].push_back(location);
+            }
+        }
+        return substituents;
+    }
     
 };
