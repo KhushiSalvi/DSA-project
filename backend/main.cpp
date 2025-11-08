@@ -245,5 +245,22 @@ void printAdjacencyList()
         }
     }
 private:
-
+void updatePriority(string group, int atom_id, int &current_highest_priority)
+    {
+        if (atoms[atom_id].functional_group == "none" || GROUP_PRIORITY[group] < GROUP_PRIORITY[atoms[atom_id].functional_group])
+        {
+            atoms[atom_id].functional_group = group;
+        }
+        if (GROUP_PRIORITY[group] < current_highest_priority)
+        {
+            current_highest_priority = GROUP_PRIORITY[group];
+            highest_priority_group = group;
+            principal_group_atoms.clear();
+            principal_group_atoms.insert(atom_id);
+        }
+        else if (GROUP_PRIORITY[group] == current_highest_priority)
+        {
+            principal_group_atoms.insert(atom_id);
+        }
+    }
 };
