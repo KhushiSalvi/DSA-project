@@ -782,6 +782,122 @@ if (!tb_locs.empty())
             addBond(len, 1, 1);
         }
     }
+
+
+ void parseCore(string core_name)
+    {
+        if (core_name.empty())
+            return;
+        vector<string> tokens = splitString(core_name, "-");
+        if (tokens.empty())
+            return;
+
+        size_t idx = 0;
+        // skip explicit parent stem token if present
+        if (!this->parent_stem.empty() && tokens[0] == this->parent_stem)
+        {
+            idx = 1;
+        }
+        else if (tokens[0].find("cyclo") == 0)
+        {
+            if (tokens.size() > 1 && !this->parent_stem.empty() && tokens[1] == this->parent_stem)
+                idx = 2;
+            else
+                idx = 1;
+        }
+
+        vector<int> current_locants;
+        for (; idx < tokens.size(); ++idx)
+        {
+            string token = tokens[idx];
+            if (token.empty())
+                continue;
+
+            // locant list like "1,3,5"
+            if (isdigit(token[0]))
+            {
+                current_locants.clear();
+                vector<string> parts = splitString(token, ",");
+                for (const string &p : parts)
+                {
+                    if (!p.empty() && isdigit(p[0]))
+                    {
+                        try
+                        {
+                            int v = stoi(p);
+                            current_locants.push_back(v);
+                        }
+                        catch (...)
+                        {
+                        }
+                    }
+                }
+                continue;
+            }
+
+            // multiplicative prefixes: ignore if locants present
+            if (token == "di" || token == "tri" || token == "tetra")
+            {
+                continue;
+            }
+
+            // bond type (ene,yne)
+            if (BOND_TYPE.count(token))
+            {
+                int type = BOND_TYPE.at(token);
+                if (!current_locants.empty())
+                {
+                    for (int loc : current_locants)
+                    {
+                        int a = loc;
+                        int b = loc + 1;
+                        if (this->is_cyclic && this->main_chain_length > 0)
+                        {
+                            if (b > this->main_chain_length)
+                                b = 1;
+                        }
+                        if (atoms.count(a) && atoms.count(b))
+                        {
+                            if (!atoms[a].neighbors.count(b) || atoms[a].neighbors[b] < type)
+                            {
+                                addBond(a, b, type);
+                            }
+                        }
+                    }
+                }
+                current_locants.clear();
+                continue;
+            }
+
+            // functional groups like ol, one, al, oic acid
+            if (GROUP_TYPE.count(token))
+            {
+                string element = GROUP_TYPE.at(token);
+                if (!current_locants.empty())
+                {
+                    for (int loc : current_locants)
+                    {
+                        int new_id = next_atom_id++;
+                        addAtom(new_id, element);
+                        if (token == "one" || token == "al" || token == "oic acid")
+                        {
+                            addBond(loc, new_id, 2);
+                        }
+                        else
+                        {
+                            addBond(loc, new_id, 1);
+                        }
+                    }
+                    current_locants.clear();
+                }
+                continue;
+            }
+
+            // ignore unknown tokens (e.g., stray "cyclo" or unexpected text)
+            current_locants.clear();
+        }
+    }
+
  void parsePrefixes(string prefix_name)
     {
         vector<string> tokens = splitString(prefix_name, "-");
