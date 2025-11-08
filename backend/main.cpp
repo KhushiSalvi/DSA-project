@@ -97,3 +97,19 @@ struct LocantSet
         return this_ene < other_ene;
     }
 };
+struct PathScore
+{
+    int priority_group_count = 0;
+    int multiple_bond_count = 0;
+    int length = 0;
+    bool operator>(const PathScore &other) const
+    {
+        if (priority_group_count != other.priority_group_count)
+            return priority_group_count > other.priority_group_count;
+        if (multiple_bond_count != other.multiple_bond_count)
+            return multiple_bond_count > other.multiple_bond_count;
+        return length > other.length;
+    }
+};
+
+
