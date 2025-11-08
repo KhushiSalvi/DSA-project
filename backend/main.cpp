@@ -144,4 +144,23 @@ public:
         atoms[u].neighbors[v] = bondType;
         atoms[v].neighbors[u] = bondType;
     }
+void printAdjacencyList()
+    {
+        cout << "--- Generated Graph (Adjacency List) ---" << endl;
+        for (map<int, Atom>::const_iterator it = atoms.begin(); it != atoms.end(); ++it)
+        {
+            int id = it->first;
+            const Atom &atom = it->second;
+            cout << "Atom " << id << " (" << atom.element << "): ";
+            for (map<int, int>::const_iterator nit = atom.neighbors.begin(); nit != atom.neighbors.end(); ++nit)
+            {
+                int neighbor = nit->first;
+                int type = nit->second;
+                cout << "[-> " << neighbor << " (type " << type << ")] ";
+            }
+            cout << endl;
+        }
+    }
+private:
+
 };
