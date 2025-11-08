@@ -782,4 +782,62 @@ if (!tb_locs.empty())
             addBond(len, 1, 1);
         }
     }
+ void parsePrefixes(string prefix_name)
+    {
+        vector<string> tokens = splitString(prefix_name, "-");
+        vector<int> locants;
+        for (const string &token : tokens)
+        {
+            if (token.empty())
+                continue;
+            if (isdigit(token[0]))
+            {
+                locants.clear();
+                vector<string> loc_list = splitString(token, ",");
+                for (const string &loc : loc_list)
+                {
+                    locants.push_back(stoi(loc));
+                }
+            }
+            else
+            {
+                string base_name = "";
+                if (token.compare(0, 2, "di") == 0)
+                {
+                    base_name = token.substr(2);
+                }
+                else if (token.compare(0, 3, "tri") == 0)
+                {
+                    base_name = token.substr(3);
+                }
+                else if (token.compare(0, 5, "tetra") == 0)
+                {
+                    base_name = token.substr(5);
+                }
+                else
+                {
+                    base_name = token;
+                }
+
+                if (SUBST_LEN.count(base_name))
+                {
+                    buildSubstituent(locants, base_name, locants.size());
+                }
+                else if (base_name == "oxo" || base_name == "hydroxy")
+                {
+                    for (int loc : locants)
+                    {
+                        int new_id = next_atom_id++;
+                        addAtom(new_id, "O");
+                        if (base_name == "oxo")
+                            addBond(loc, new_id, 2);
+                        else if (base_name == "hydroxy")
+                            addBond(loc, new_id, 1);
+                    }
+                }
+                locants.clear();
+            }
+        }
+    }
+
 };
