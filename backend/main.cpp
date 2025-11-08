@@ -972,4 +972,81 @@ if (!tb_locs.empty())
             }
         }
     }
+
+    // --- Main function with menu ---
+int main()
+{
+    Molecule mol;
+    int choice = 0;
+
+    cout << "========================================" << endl;
+    cout << "  IUPAC Name <-> Structure Converter" << endl;
+    cout << "========================================" << endl;
+
+    while (true)
+    {
+        cout << "\nSelect an option:" << endl;
+        cout << "  1. Convert Structure (Graph) to IUPAC Name" << endl;
+        cout << "  2. Convert IUPAC Name to Structure (Graph)" << endl;
+        cout << "  3. Exit" << endl;
+        cout << "Enter choice: ";
+
+        if (!(cin >> choice))
+        {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1)
+        {
+            mol.atoms.clear();
+            mol.next_atom_id = 1;
+            string type;
+            cout << "\nEnter atoms (e.g., 'atom 1 C') or 'atom 2 O'" << endl;
+            cout << "Enter bonds (e.g., 'bond 1 2 1') for single bond, 2 for double, 3 for triple" << endl;
+            cout << "Type 'name' to finish." << endl
+                 << endl;
+
+            while (cin >> type && type != "name")
+            {
+                if (type == "atom")
+                {
+                    int id;
+                    string element;
+                    if (!(cin >> id >> element))
+                    {
+                        cout << "Error reading atom data." << endl;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        continue;
+                    }
+                    mol.addAtom(id, element);
+                }
+                else if (type == "bond")
+                {
+                    int u, v, t;
+                    if (!(cin >> u >> v >> t))
+                    {
+                        cout << "Error reading bond data." << endl;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        continue;
+                    }
+                    mol.addBond(u, v, t);
+                }
+                else
+                {
+                    cout << "Invalid command: " << type << ". Use 'atom' or 'bond'." << endl;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+            }
+            cout << "\n--- Generating IUPAC Name ---" << endl;
+            string iupac_name = mol.getIUPACName();
+            cout << "\n---------------------------------" << endl;
+            cout << "Final IUPAC Name: " << iupac_name << endl;
+            cout << "---------------------------------" << endl;
+        }
+        
 };
