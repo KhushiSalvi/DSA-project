@@ -462,4 +462,24 @@ vector<int> findPrincipalChain()
         }
         return best_path;
     }
+
+    void dfs_find_paths(int u, vector<int> current_path, set<int> &visited, vector<vector<int>> &all_paths)
+    {
+        visited.insert(u);
+        bool at_end = true;
+        for (map<int, int>::const_iterator it = atoms[u].neighbors.begin(); it != atoms[u].neighbors.end(); ++it)
+        {
+            int v = it->first;
+            if (atoms[v].element == "C" && visited.find(v) == visited.end())
+            {
+                at_end = false;
+                vector<int> new_path = current_path;
+                new_path.push_back(v);
+                dfs_find_paths(v, new_path, visited, all_paths);
+            }
+        }
+        if (at_end)
+            all_paths.push_back(current_path);
+        visited.erase(u);
+    }
 };
