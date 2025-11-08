@@ -60,3 +60,13 @@ map<string, int> BOND_TYPE = {
 map<string, string> GROUP_TYPE = {
     {"ol", "O"}, {"one", "O"}, {"al", "O"}, {"oic acid", "O"}
 };
+
+struct Atom
+{
+    int id;
+    string element;
+    map<int, int> neighbors;
+    string functional_group = "none";
+    int chain_number = 0;
+};
+       
