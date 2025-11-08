@@ -699,7 +699,7 @@ string assembleName(const vector<int> &chain, const map<int, int> &numbering, co
         sort(db_locs.begin(), db_locs.end());
         sort(tb_locs.begin(), tb_locs.end());
 
-        string multiple_bond_suffix = "";}
+        string multiple_bond_suffix = "";
 if (!tb_locs.empty())
         {
             multiple_bond_suffix += "-";
@@ -749,6 +749,7 @@ if (!tb_locs.empty())
         }
 
         return ss.str() + parent + multiple_bond_suffix;
+}
 
      vector<string> splitString(const string &s, const string &delimiters)
     {
