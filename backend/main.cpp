@@ -170,7 +170,62 @@ public:
         map<string, vector<int>> substituents = result.second;
         return assembleName(chain, numbering, substituents);
     }
+void buildFromName(string name)
+    {
+        atoms.clear();
+        next_atom_id = 1;
+        is_cyclic = false;
+        main_chain_length = 0;
+        this->parent_stem.clear();
 
+        string parent_stem_local = "";
+        string core_name = "";
+        string prefix_name = "";
+        int parent_len = 0;
+
+        for (map<string, int>::const_iterator it = PARENTS_LEN.begin(); it != PARENTS_LEN.end(); ++it)
+        {
+            const string &stem = it->first;
+            int len = it->second;
+            size_t pos = name.find(stem);
+            while (pos != string::npos)
+            {
+                bool prefix_ok = (pos == 0) || (name[pos - 1] == '-');
+                size_t after = pos + stem.length();
+                bool suffix_ok = (after == name.length()) || (name[after] == '-');
+                if (prefix_ok && suffix_ok)
+                {
+                    parent_stem_local = stem;
+                    parent_len = len;
+                    prefix_name = name.substr(0, pos);
+                    core_name = name.substr(pos);
+                    break;
+                }
+                pos = name.find(stem, pos + 1);
+            }
+            if (parent_len > 0)
+                break;
+        }
+
+        if (parent_len == 0)
+        {
+            cout << "Error: Could not parse parent stem." << endl;
+            return;
+        }
+
+        this->parent_stem = parent_stem_local;
+
+        bool cyclic = false;
+        if (prefix_name.find("cyclo") != string::npos)
+            cyclic = true;
+        if (!core_name.empty() && core_name.find("cyclo") == 0)
+            cyclic = true;
+        is_cyclic = cyclic;
+
+        buildMainChain(parent_len, cyclic);
+        parseCore(core_name);
+        parsePrefixes(prefix_name);
+    }
 
 void printAdjacencyList()
     {
