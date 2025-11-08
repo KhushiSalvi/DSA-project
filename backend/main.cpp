@@ -69,4 +69,31 @@ struct Atom
     string functional_group = "none";
     int chain_number = 0;
 };
-       
+
+struct LocantSet
+{
+    vector<int> principal_groups;
+    vector<int> double_bonds;
+    vector<int> triple_bonds;
+    vector<int> substituents;
+    bool operator<(const LocantSet &other) const
+    {
+        if (principal_groups != other.principal_groups)
+            return principal_groups < other.principal_groups;
+        if (double_bonds != other.double_bonds)
+            return double_bonds < other.double_bonds;
+        if (triple_bonds != other.triple_bonds)
+            return triple_bonds < other.triple_bonds;
+        return substituents < other.substituents;
+    }
+    bool eneYneTieBreaker(const LocantSet &other) const
+    {
+        int this_yne = triple_bonds.empty() ? 1000 : triple_bonds[0];
+        int other_yne = other.triple_bonds.empty() ? 1000 : other.triple_bonds[0];
+        if (this_yne != other_yne)
+            return this_yne < other_yne;
+        int this_ene = double_bonds.empty() ? 1000 : double_bonds[0];
+        int other_ene = other.double_bonds.empty() ? 1000 : other.double_bonds[0];
+        return this_ene < other_ene;
+    }
+};
