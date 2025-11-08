@@ -551,6 +551,18 @@ vector<int> findPrincipalChain()
             }
         }
     }
+string getAlphabeticalSubList(const map<string, vector<int>> &substituents)
+    {
+        stringstream ss;
+        for (map<string, vector<int>>::const_iterator it = substituents.begin(); it != substituents.end(); ++it)
+        {
+            const string &name = it->first;
+            const vector<int> &locs = it->second;
+            for (int loc : locs)
+                ss << loc << "-" << name << "-";
+        }
+        return ss.str();
+    }
 
     
 };
