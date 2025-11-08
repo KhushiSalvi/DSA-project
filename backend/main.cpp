@@ -373,6 +373,27 @@ bool dfs_cycle_check(int u, int parent, set<int> &visited)
                 }
             }
         }
+
+        if (current_highest_priority > GROUP_PRIORITY["alkyne"])
+        {
+            for (map<int, Atom>::iterator it = atoms.begin(); it != atoms.end(); ++it)
+            {
+                int id = it->first;
+                Atom &atom = it->second;
+                for (map<int, int>::iterator nit = atom.neighbors.begin(); nit != atom.neighbors.end(); ++nit)
+                {
+                    int bond_type = nit->second;
+                    if (bond_type == 2)
+                    {
+                        updatePriority("alkene", id, current_highest_priority);
+                    }
+                    else if (bond_type == 3)
+                    {
+                        updatePriority("alkyne", id, current_highest_priority);
+                    }
+                }
+            }
+        }
     }
 
 };
