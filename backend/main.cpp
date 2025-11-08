@@ -749,4 +749,37 @@ if (!tb_locs.empty())
         }
 
         return ss.str() + parent + multiple_bond_suffix;
+
+     vector<string> splitString(const string &s, const string &delimiters)
+    {
+        vector<string> tokens;
+        size_t start = 0, end = 0;
+        while ((end = s.find_first_of(delimiters, start)) != string::npos)
+        {
+            if (end != start)
+                tokens.push_back(s.substr(start, end - start));
+            start = end + 1;
+        }
+        if (start < s.length())
+            tokens.push_back(s.substr(start));
+        return tokens;
+    }
+
+    // build main chain; if cyclic is true, close ring (connect last to first)
+    void buildMainChain(int len, bool cyclic = false)
+    {
+        main_chain_length = len;
+        for (int i = 1; i <= len; i++)
+        {
+            addAtom(i, "C");
+        }
+        for (int i = 1; i < len; i++)
+        {
+            addBond(i, i + 1, 1);
+        }
+        if (cyclic && len >= 3)
+        {
+            addBond(len, 1, 1);
+        }
+    }
 };
