@@ -955,5 +955,21 @@ if (!tb_locs.empty())
             }
         }
     }
-
+ void buildSubstituent(vector<int> locants, string base_name, int /*count */)
+    {
+        if (!SUBST_LEN.count(base_name))
+            return;
+        int size = SUBST_LEN.at(base_name);
+        for (int loc : locants)
+        {
+            int prev_atom = loc;
+            for (int i = 0; i < size; i++)
+            {
+                int new_atom_id = next_atom_id++;
+                addAtom(new_atom_id, "C");
+                addBond(prev_atom, new_atom_id, 1);
+                prev_atom = new_atom_id;
+            }
+        }
+    }
 };
