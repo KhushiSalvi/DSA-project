@@ -112,4 +112,36 @@ struct PathScore
     }
 };
 
+class Molecule
+{
+public:
+    map<int, Atom> atoms;
+    string highest_priority_group = "alkane";
+    set<int> principal_group_atoms;
+    bool is_cyclic = false;
+    int next_atom_id = 1;
+
+    // Added members to support parsing/numbering of parent chain
+    int main_chain_length = 0;
+    string parent_stem = "";
+
+    void addAtom(int id, string element)
+    {
+        if (atoms.find(id) == atoms.end())
+        {
+            atoms[id] = Atom{id, element};
+            if (id >= next_atom_id)
+                next_atom_id = id + 1;
+        }
+    }
+
+    void addBond(int u, int v, int bondType)
+    {
+        if (atoms.find(u) == atoms.end() || atoms[u].element == "H")
+            addAtom(u, "C");
+        if (atoms.find(v) == atoms.end() || atoms[v].element == "H")
+            addAtom(v, "C");
+        atoms[u].neighbors[v] = bondType;
+        atoms[v].neighbors[u] = bondType;
+    }
 
