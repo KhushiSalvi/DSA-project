@@ -263,4 +263,35 @@ void updatePriority(string group, int atom_id, int &current_highest_priority)
             principal_group_atoms.insert(atom_id);
         }
     }
+bool dfs_cycle_check(int u, int parent, set<int> &visited)
+    {
+        visited.insert(u);
+        for (map<int, int>::const_iterator it = atoms[u].neighbors.begin(); it != atoms[u].neighbors.end(); ++it)
+        {
+            int v = it->first;
+            if (v == parent)
+                continue;
+            if (visited.count(v))
+                return true;
+            if (dfs_cycle_check(v, u, visited))
+                return true;
+        }
+        return false;
+    }
+
+    bool isCyclic()
+    {
+        set<int> visited;
+        for (map<int, Atom>::const_iterator it = atoms.begin(); it != atoms.end(); ++it)
+        {
+            int id = it->first;
+            if (!visited.count(id))
+            {
+                if (dfs_cycle_check(id, -1, visited))
+                    return true;
+            }
+        }
+        return false;
+    }
+
 };
