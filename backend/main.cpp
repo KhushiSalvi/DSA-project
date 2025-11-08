@@ -972,6 +972,7 @@ if (!tb_locs.empty())
             }
         }
     }
+};
 
     // --- Main function with menu ---
 int main()
@@ -1083,4 +1084,4 @@ int main()
     return 0;
 }
         
-};
+
