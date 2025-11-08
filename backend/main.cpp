@@ -700,4 +700,53 @@ string assembleName(const vector<int> &chain, const map<int, int> &numbering, co
         sort(tb_locs.begin(), tb_locs.end());
 
         string multiple_bond_suffix = "";}
+if (!tb_locs.empty())
+        {
+            multiple_bond_suffix += "-";
+            for (size_t i = 0; i < tb_locs.size(); ++i)
+            {
+                multiple_bond_suffix += to_string(tb_locs[i]);
+                if (i < tb_locs.size() - 1)
+                    multiple_bond_suffix += ",";
+            }
+            multiple_bond_suffix += "-yne";
+        }
+        if (!db_locs.empty())
+        {
+            if (!multiple_bond_suffix.empty())
+                multiple_bond_suffix += "-";
+            multiple_bond_suffix += "-";
+            for (size_t i = 0; i < db_locs.size(); ++i)
+            {
+                multiple_bond_suffix += to_string(db_locs[i]);
+                if (i < db_locs.size() - 1)
+                    multiple_bond_suffix += ",";
+            }
+            multiple_bond_suffix += "-ene";
+        }
+
+        if (highest_priority_group != "alkene" && highest_priority_group != "alkyne")
+        {
+            vector<int> group_locants;
+            for (int atom_id : principal_group_atoms)
+            {
+                if (numbering.count(atom_id))
+                    group_locants.push_back(numbering.at(atom_id));
+            }
+            sort(group_locants.begin(), group_locants.end());
+            if (!group_locants.empty())
+            {
+                if (!multiple_bond_suffix.empty())
+                    multiple_bond_suffix += "-";
+                for (size_t i = 0; i < group_locants.size(); ++i)
+                {
+                    multiple_bond_suffix += to_string(group_locants[i]);
+                    if (i < group_locants.size() - 1)
+                        multiple_bond_suffix += ",";
+                }
+                multiple_bond_suffix += "-" + GROUP_SUFFIX[highest_priority_group];
+            }
+        }
+
+        return ss.str() + parent + multiple_bond_suffix;
 };
