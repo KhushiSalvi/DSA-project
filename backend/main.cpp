@@ -632,5 +632,20 @@ LocantSet getLocantList(const vector<int> &chain, const map<int, int> &numbering
         }
         return substituents;
     }
-    
+    int dfs_subst_size(int u, set<int> &visited, const set<int> &main_chain_nodes)
+    {
+        visited.insert(u);
+        int count = 1;
+        for (map<int, int>::const_iterator it = atoms[u].neighbors.begin(); it != atoms[u].neighbors.end(); ++it)
+        {
+            int v = it->first;
+            if (visited.find(v) == visited.end() &&
+                main_chain_nodes.find(v) == main_chain_nodes.end() &&
+                atoms[v].element == "C")
+            {
+                count += dfs_subst_size(v, visited, main_chain_nodes);
+            }
+        }
+        return count;
+    }
 };
