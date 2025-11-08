@@ -563,6 +563,45 @@ string getAlphabeticalSubList(const map<string, vector<int>> &substituents)
         }
         return ss.str();
     }
-
+LocantSet getLocantList(const vector<int> &chain, const map<int, int> &numbering, const map<string, vector<int>> &substituents)
+    {
+        LocantSet locants;
+        for (int atom_id : principal_group_atoms)
+        {
+            if (numbering.count(atom_id))
+            {
+                locants.principal_groups.push_back(numbering.at(atom_id));
+            }
+        }
+        sort(locants.principal_groups.begin(), locants.principal_groups.end());
+        set<int> main_chain_nodes(chain.begin(), chain.end());
+        for (map<int, int>::const_iterator it = numbering.begin(); it != numbering.end(); ++it)
+        {
+            int atom_id = it->first;
+            int num = it->second;
+            for (map<int, int>::const_iterator nit = atoms[atom_id].neighbors.begin(); nit != atoms[atom_id].neighbors.end(); ++nit)
+            {
+                int neighbor_id = nit->first;
+                int bond_type = nit->second;
+                if (bond_type > 1 && main_chain_nodes.count(neighbor_id) && numbering.count(neighbor_id) && numbering.at(neighbor_id) > num)
+                {
+                    if (bond_type == 2)
+                        locants.double_bonds.push_back(num);
+                    if (bond_type == 3)
+                        locants.triple_bonds.push_back(num);
+                }
+            }
+        }
+        sort(locants.double_bonds.begin(), locants.double_bonds.end());
+        sort(locants.triple_bonds.begin(), locants.triple_bonds.end());
+        for (map<string, vector<int>>::const_iterator it = substituents.begin(); it != substituents.end(); ++it)
+        {
+            const vector<int> &locs = it->second;
+            for (int l : locs)
+                locants.substituents.push_back(l);
+        }
+        sort(locants.substituents.begin(), locants.substituents.end());
+        return locants;
+    }
     
 };
