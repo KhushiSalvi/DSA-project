@@ -422,5 +422,44 @@ vector<int> findPrincipalChain()
                 endpoints.insert(id);
             }
         }
+        if (endpoints.empty() && !atoms.empty())
+        {
+            for (map<int, Atom>::const_iterator it = atoms.begin(); it != atoms.end(); ++it)
+            {
+                int id = it->first;
+                const Atom &atom = it->second;
+                if (atom.element == "C")
+                {
+                    endpoints.insert(id);
+                    break;
+                }
+            }
+        }
+        for (int start_node : endpoints)
+        {
+            visited.clear();
+            dfs_find_paths(start_node, {start_node}, visited, all_paths);
+        }
+        if (all_paths.empty() && atoms.size() == 1)
+        {
+            for (map<int, Atom>::const_iterator it = atoms.begin(); it != atoms.end(); ++it)
+            {
+                const Atom &atom = it->second;
+                if (atom.element == "C")
+                    return {it->first};
+            }
+        }
+        PathScore best_score;
+        vector<int> best_path;
+        for (const auto &path : all_paths)
+        {
+            PathScore current_score = scorePath(path);
+            if (current_score > best_score)
+            {
+                best_score = current_score;
+                best_path = path;
+            }
+        }
+        return best_path;
     }
 };
