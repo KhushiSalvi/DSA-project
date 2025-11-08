@@ -395,5 +395,32 @@ bool dfs_cycle_check(int u, int parent, set<int> &visited)
             }
         }
     }
+vector<int> findPrincipalChain()
+    {
+        if (is_cyclic)
+        {
+            vector<int> ring_atoms;
+            for (map<int, Atom>::const_iterator it = atoms.begin(); it != atoms.end(); ++it)
+            {
+                const Atom &atom = it->second;
+                if (atom.element == "C")
+                    ring_atoms.push_back(it->first);
+            }
+            if (!ring_atoms.empty())
+                return ring_atoms;
+        }
 
+        vector<vector<int>> all_paths;
+        set<int> visited;
+        set<int> endpoints;
+        for (map<int, Atom>::const_iterator it = atoms.begin(); it != atoms.end(); ++it)
+        {
+            int id = it->first;
+            const Atom &atom = it->second;
+            if (atom.element == "C" && atom.neighbors.size() == 1)
+            {
+                endpoints.insert(id);
+            }
+        }
+    }
 };
