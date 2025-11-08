@@ -294,4 +294,85 @@ bool dfs_cycle_check(int u, int parent, set<int> &visited)
         return false;
     }
 
+
+    void findFunctionalGroups()
+    {
+        int current_highest_priority = GROUP_PRIORITY["alkane"];
+        for (map<int, Atom>::iterator it = atoms.begin(); it != atoms.end(); ++it)
+        {
+            int id = it->first;
+            Atom &atom = it->second;
+            if (atom.element == "O")
+            {
+                int c_neighbor = -1;
+                if (atom.neighbors.size() <= 2)
+                {
+                    for (map<int, int>::iterator nit = atom.neighbors.begin(); nit != atom.neighbors.end(); ++nit)
+                    {
+                        int neighbor_id = nit->first;
+                        int bond_type = nit->second;
+                        if (atoms[neighbor_id].element == "C" && bond_type == 1)
+                        {
+                            c_neighbor = neighbor_id;
+                        }
+                    }
+                }
+                if (c_neighbor != -1)
+                {
+                    updatePriority("alcohol", c_neighbor, current_highest_priority);
+                }
+            }
+            else if (atom.element == "C")
+            {
+                bool has_double_bond_O = false;
+                for (map<int, int>::iterator nit = atom.neighbors.begin(); nit != atom.neighbors.end(); ++nit)
+                {
+                    int neighbor_id = nit->first;
+                    int bond_type = nit->second;
+                    if (atoms[neighbor_id].element == "O" && bond_type == 2)
+                    {
+                        has_double_bond_O = true;
+                        break;
+                    }
+                }
+                if (has_double_bond_O)
+                {
+                    bool has_single_bond_O = false;
+                    for (map<int, int>::iterator nit = atom.neighbors.begin(); nit != atom.neighbors.end(); ++nit)
+                    {
+                        int neighbor_id = nit->first;
+                        int bond_type = nit->second;
+                        if (atoms[neighbor_id].element == "O" && bond_type == 1)
+                        {
+                            has_single_bond_O = true;
+                            break;
+                        }
+                    }
+                    if (has_single_bond_O)
+                    {
+                        updatePriority("acid", id, current_highest_priority);
+                    }
+                    else
+                    {
+                        int c_neighbors = 0;
+                        for (map<int, int>::iterator nit = atom.neighbors.begin(); nit != atom.neighbors.end(); ++nit)
+                        {
+                            int neighbor_id = nit->first;
+                            if (atoms[neighbor_id].element == "C")
+                                c_neighbors++;
+                        }
+                        if (c_neighbors <= 1)
+                        {
+                            updatePriority("aldehyde", id, current_highest_priority);
+                        }
+                        else
+                        {
+                            updatePriority("ketone", id, current_highest_priority);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 };
