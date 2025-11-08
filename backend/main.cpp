@@ -1048,5 +1048,39 @@ int main()
             cout << "Final IUPAC Name: " << iupac_name << endl;
             cout << "---------------------------------" << endl;
         }
+        else if (choice == 2)
+        {
+            mol.atoms.clear();
+            mol.next_atom_id = 1;
+            mol.is_cyclic = false;
+            mol.main_chain_length = 0;
+            mol.parent_stem.clear();
+            string name = "";
+            cout << "\nEnter IUPAC Name (e.g., 4-methylpent-2-en-1-ol or cyclohex-1,3,5-tri-ene):" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            getline(cin, name);
+
+            // normalize: remove spaces
+            name.erase(remove(name.begin(), name.end(), ' '), name.end());
+            // convert to lowercase for robustness
+            transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+            cout << "\n--- Building Graph from Name ---" << endl;
+            mol.buildFromName(name);
+            mol.printAdjacencyList();
+            cout << "---------------------------------" << endl;
+        }
+        else if (choice == 3)
+        {
+            cout << "Exiting." << endl;
+            break;
+        }
+        else
+        {
+            cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
+        }
+    }
+    return 0;
+}
         
 };
