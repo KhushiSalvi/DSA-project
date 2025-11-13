@@ -1,0 +1,131 @@
+/* -------------------- CHEMICAL BLUE BACKGROUND -------------------- */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+
+  /* Use your image */
+  background: url("https://i.pinimg.com/736x/1e/b8/e2/1eb8e2f4fc30fcd8c00d8bc9f060c949.jpg") no-repeat center center/cover;
+
+  position: relative;
+  overflow-x: hidden;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /* Darken the image */
+  background: rgba(0, 0, 0, 0.55); 
+  backdrop-filter: blur(2px);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* -------------------- WRAPPER -------------------- */
+
+.wrapper {
+  position: relative;
+  max-width: 850px;
+  margin: 50px auto;
+  padding: 20px;
+  z-index: 5;
+}
+
+/* -------------------- HEADINGS -------------------- */
+
+.title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  color: #e6f4ff;
+  text-shadow: 0px 0px 10px rgba(0, 180, 255, 0.5);
+}
+
+.subtitle {
+  text-align: center;
+  color: #bcd7e9;
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+
+/* -------------------- GLASS CARD -------------------- */
+
+.box {
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  margin-bottom: 40px;
+  color: white;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------- INPUTS -------------------- */
+
+.input-area {
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.36);
+  padding: 12px;
+  font-size: 15px;
+  outline: none;
+  resize: none;
+  margin-bottom: 15px;
+  background: rgba(255,255,255,0.18);
+  color: #eaffff;
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.36);
+  padding: 12px;
+  font-size: 15px;
+  margin-bottom: 15px;
+  outline: none;
+  background: rgba(255,255,255,0.18);
+  color: #eaffff;
+}
+
+/* -------------------- BUTTON -------------------- */
+
+.action-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(90deg, #009ffd, #2af598);
+  cursor: pointer;
+  font-size: 17px;
+  color: white;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 22px rgba(0, 255, 255, 0.25);
+}
+
+/* -------------------- RESULT TEXT -------------------- */
+
+.result {
+  margin-top: 18px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #99eaff;
+}
