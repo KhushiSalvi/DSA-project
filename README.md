@@ -411,4 +411,4 @@ Hash tables provide a clean, scalable, and fast lookup method.
 
 ## Video explaining the whole project
 
-https://drive.google.com/drive/folders/1xyk095lzRydH2H26OW3DGB_CIEhJy6tm
+https://drive.google.com/file/d/1C4P9izYF66jv2q7ZK_W_yZeXOqgW9UEQ/view?usp=drivesdk
