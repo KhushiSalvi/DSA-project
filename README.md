@@ -340,3 +340,72 @@ Hash tables provide a clean, scalable, and fast lookup method.
 - Follows IUPAC rules for numbering, priority, and naming logic
 
 - Compact, reliable, and easy to extend for more advanced chemical tools and features
+
+# Team Contributions 
+
+## Teenu Kumari
+
+- Added interactive build option (in main menu)
+
+- Implemented substituent chain builder (buildSubstituent())
+
+- Implemented locant extraction (getLocantList())
+
+- Implemented locant-based substituent comparison (getAlphabeticalSubList())
+
+- Enhanced naming engine (assembleName())
+
+- Added functional-group priority logic (updatePriority())
+
+- Improved principal chain detection (findPrincipalChain(), numberChainAndFindSubstituents())
+
+- Multiple bug fixes (main.cpp, molecule.cpp)
+
+## Khushi Salvi
+
+- Added main function with menu (main())
+
+- Added function to build parent chain (buildMainChain())
+
+- Added DFS path search (dfs_find_paths())
+
+- Added substituent extraction (getSubstituents())
+
+- Implemented functional group finder (findFunctionalGroups())
+
+- Added adjacency list printer (printAdjacencyList())
+
+- Initial code + hash tables (ALKANE_NAME, SUBST_NAME, etc.)
+
+## Riddhi Jain
+
+- Created core Molecule class (class Molecule)
+
+- Implemented chain numbering logic (determineOptimalNumbering())
+
+- Enhanced principal chain logic (findPrincipalChain(), scorePath())
+
+- Added alphabetical sorting for substituents (getAlphabeticalSubList())
+
+- Added cyclic structure check (isCyclic(), dfs_cycle_check())
+
+- Fixed bugs in molecule & main (bug fixes)
+
+- Helped refine path scoring (scorePath())
+
+## Mahi Gupta
+
+- Implemented core parser for IUPAC names (parseCore())
+
+- Added substituent-size DFS (dfs_subst_size())
+
+- Improved path scoring (scorePath())
+
+- Updated functional-group detection (findFunctionalGroups())
+
+- Implemented large parts of name-to-structure builder (buildFromName())
+
+- General debugging & fixes
+
+- Added ketone/alcohol/aldehyde parsing (GROUP_TYPE logic)
+
