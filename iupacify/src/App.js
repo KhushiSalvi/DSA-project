@@ -13,7 +13,7 @@ function App() {
   const structureToName = {
     // BASIC 10
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 2 5 1\nname":
-      "2-methyl-butane",
+      "2-methyl-but",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\nbond 1 2 1\nbond 2 3 2\nbond 3 4 1\nbond 4 5 1\nname":
       "pent-2-ene",
@@ -22,57 +22,54 @@ function App() {
       "but-1-yne",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 O\nbond 1 2 1\nbond 2 3 1\nbond 2 4 1\nname":
-      "propan-2-ol",
+      "prop-2-ol",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 2\nname":
-      "propan-1-al",
+      "prop-1-al",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 3 6 2\nname":
-      "pentan-3-one",
+      "pent-3-one",
 
     "atom 1 C\natom 2 C\natom 3 O\natom 4 O\nbond 1 2 1\nbond 2 3 2\nbond 2 4 1\nname":
-      "ethan-1-oic acid",
+      "eth-1-oic acid",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 C\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 5 6 1\nbond 6 1 1\nname":
-      "cyclohexane",
+      "cyclohex",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 O\natom 7 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 2 6 2\nbond 4 7 1\nname":
-      "4-hydroxy-pentan-2-one",
+      "4-hydroxy-pent-2-one",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 C\nbond 1 2 3\nbond 2 3 1\nbond 3 4 1\nbond 3 5 1\nbond 3 6 1\nname":
       "3,3-dimethyl-but-1-yne",
 
     // ADVANCED 10
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 C\natom 7 C\natom 8 C\natom 9 C\natom 10 C\natom 11 C\natom 12 C\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 5 6 1\nbond 3 7 1\nbond 7 8 1\nbond 4 9 1\nbond 9 10 1\nbond 2 11 1\nbond 5 12 1\nname":
-      "3,4-diethyl-2-methylheptane",
+      "3,4-diethyl-2,5-dimethyl-hex",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 C\nbond 1 2 2\nbond 2 3 1\nbond 3 4 2\nbond 4 5 1\nbond 4 6 1\nname":
-      "4-methylpenta-1,3-diene",
+      "4-methyl-pent-1,3-ene",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 C\natom 7 C\nbond 1 2 3\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 5 6 1\nbond 6 7 3\nname":
-      "hepta-1,6-diyne",
+      "hept-1,6-yne",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 O\natom 6 O\nbond 1 2 1\nbond 2 3 1\nbond 1 5 1\nbond 2 6 1\nbond 2 4 1\nname":
-      "2-methylpropane-1,2-diol",
+      "2-methylprop-1,2-ol",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 2\nbond 1 6 2\nname":
-      "pent-4-en-1-al",
+      "pent-4-ene-1-al",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 2 5 2\nname":
-      "butan-2-one",
+      "but-2-one",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 C\natom 7 O\natom 8 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 3 5 1\nbond 3 6 1\nbond 4 7 2\nbond 4 8 1\nname":
-      "3,3-dimethylbutan-1-oic acid",
+      "2,2-dimethylbut-1-oic acid",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 5 1 1\nbond 1 6 1\nname":
-      "cyclopentan-1-ol",
+      "cyclopent-1-ol",
 
     "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 O\natom 7 O\natom 8 O\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 4 6 2\nbond 5 7 2\nbond 5 8 1\nname":
-      "4-oxo-pentan-1-oic acid",
-
-    "atom 1 C\natom 2 C\natom 3 C\natom 4 C\natom 5 C\natom 6 C\natom 7 C\natom 8 C\nbond 1 2 1\nbond 2 3 1\nbond 3 4 1\nbond 4 5 1\nbond 5 6 1\nbond 6 1 1\nbond 1 7 1\nbond 2 8 1\nname":
-      "1,2-dimethylcyclohexane",
-
+      "2-oxo-pent-1-oic acid",
+    
       // --------------------------------------
 // SIMPLE ALKANES
 // --------------------------------------
@@ -109,9 +106,7 @@ function App() {
 // --------------------------------------
 // SIMPLE ALCOHOLS
 // --------------------------------------
-"atom 1 C\natom 2 O\nbond 1 2 1\nname":
-  "methanol",
-
+    
 "atom 1 C\natom 2 C\natom 3 O\nbond 1 2 1\nbond 2 3 1\nname":
   "ethanol",
 
@@ -123,12 +118,6 @@ function App() {
 
 "atom 1 C\natom 2 C\natom 3 O\nbond 1 2 1\nbond 2 3 2\nname":
   "ethanal",
-
-// --------------------------------------
-// SIMPLE KETONES
-// --------------------------------------
-"atom 1 C\natom 2 C\natom 3 C\nbond 1 2 1\nbond 2 3 1\nname":
-  "propanone",
 
 // --------------------------------------
 // SIMPLE CARBOXYLIC ACIDS
