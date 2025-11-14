@@ -171,10 +171,10 @@ function App() {
 // -------------------------------
 // SIMPLE ALKENES
 // -------------------------------
-"ethene": 
+"eth-1-ene": 
   "CH2=CH2",
 
-"propene":
+"prop-1-ene":
   "CH3–CH=CH2",
 
 "but-1-ene":
@@ -186,10 +186,10 @@ function App() {
 // -------------------------------
 // SIMPLE ALKYNES
 // -------------------------------
-"ethyne":
+"eth-1-yne":
   "HC≡CH",
 
-"propyne":
+"prop-1-yne":
   "HC≡C–CH3",
 
 "but-1-yne":
@@ -201,52 +201,52 @@ function App() {
 // -------------------------------
 // SIMPLE ALCOHOLS
 // -------------------------------
-"methanol":
+"meth-1-ol":
   "CH3–OH",
 
-"ethanol":
+"eth-1-ol":
   "CH3–CH2–OH",
 
-"propan-1-ol":
+"prop-1-ol":
   "CH3–CH2–CH2–OH",
 
-"propan-2-ol":
+"prop-2-ol":
   "CH3–CH(OH)–CH3",
 
 // -------------------------------
 // SIMPLE ALDEHYDES
 // -------------------------------
-"methanal":
+"meth-1-al":
   "H–CHO",
 
-"ethanal":
+"eth-1-al":
   "CH3–CHO",
 
-"propanal":
+"prop-1-al":
   "CH3–CH2–CHO",
 
 // -------------------------------
 // SIMPLE KETONES
 // -------------------------------
-"propanone":
+"prop-1-one":
   "CH3–CO–CH3",
 
-"butan-2-one":
+"but-2-one":
   "CH3–CO–CH2–CH3",
 
 // -------------------------------
 // SIMPLE CARBOXYLIC ACIDS
 // -------------------------------
-"methanoic acid":
+"meth-1-oic-acid":
   "H–C(=O)–OH",
 
-"ethanoic acid":
+"eth-1-oic-acid":
   "CH3–C(=O)–OH",
 
-"propanoic acid":
+"prop-1-oic-acid":
   "CH3–CH2–C(=O)–OH",
 
-    "2-methyl-butane":
+    "2-methyl-but":
       "CH3–CH(CH3)–CH2–CH3",
 
     "pent-2-ene":
@@ -255,25 +255,21 @@ function App() {
     "but-1-yne":
       "HC≡C–CH2–CH3",
 
-    "propan-2-ol":
+    "prop-2-ol":
       "CH3–CH(OH)–CH3",
 
-    "propan-1-al":
+    "prop-1-al":
       "CH3–CH2–CHO",
-    "propanal": // alternate common name
+    "prop-1-al": // alternate common name
       "CH3–CH2–CHO",
 
-    "pentan-3-one":
+    "pent-3-one":
       "CH3–CH2–CO–CH2–CH3",
 
-    "ethan-1-oic acid":
-      "CH3–C(=O)–OH",
-    "ethanoic acid": // alternate common name
-      "CH3–C(=O)–OH",
-    "acetic acid": // alternate
+    "eth-1-oic-acid":
       "CH3–C(=O)–OH",
 
-    "cyclohexane":
+    "cyclo-hex":
       // ASCII art for cyclohexane (R2)
       `      CH2
      /    \\
@@ -282,38 +278,38 @@ function App() {
   CH2 ---- CH2
   (cyclohexane ring)`,
 
-    "4-hydroxy-pentan-2-one":
+    "4-hydroxy-pent-2-one":
       "CH3–CH(OH)–CO–CH2–CH3",
 
     "3,3-dimethyl-but-1-yne":
       "HC≡C–C(CH3)2–CH3",
 
     // ADVANCED 10
-    "3,4-diethyl-2-methylheptane":
+    "3,4-diethyl-2-methyl-hept":
       "CH3–CH(CH2CH3)–C(CH3)(CH2CH3)–CH2–CH2–CH3",
       // (readable branched depiction)
 
-    "4-methylpenta-1,3-diene":
+    "4-methyl-penta-1,3-diene":
       "CH2=CH–CH=CH(CH3)–CH3",
 
     "hepta-1,6-diyne":
       "HC≡C–CH2–CH2–CH2–C≡CH",
 
-    "2-methylpropane-1,2-diol":
+    "2-methyl-propane-1,2-diol":
       "CH3–C(OH)(CH2OH)–CH3\n(or HO–CH2–CH(OH)–CH3)",
 
     "pent-4-en-1-al":
       "CH2=CH–CH2–CH2–CHO",
 
-    "butan-2-one":
+    "but-2-one":
       "CH3–CO–CH2–CH3",
     "methyl ethyl ketone": // alt
       "CH3–CO–CH2–CH3",
 
-    "3,3-dimethylbutan-1-oic acid":
+    "3,3-dimethyl-but-1-oic-acid":
       " (CH3)3C–CH2–C(=O)–OH\n(or 3,3-dimethylbutanoic acid)",
 
-    "cyclopentan-1-ol":
+    "cyclo-pent-1-ol":
       `    CH2
    /    \\
 CH2      CH2
@@ -321,46 +317,46 @@ CH2      CH2
 CH2 ---- CH2
 (cyclopentanol)`,
 
-    "4-oxo-pentan-1-oic acid":
+    "4-oxo-pent-1-oic-acid":
       "HOOC–CH2–CO–CH2–CH3\n(or 4-oxo-pentan-1-oic acid)",
 
-    "1,2-dimethylcyclohexane":
+    "1,2-dimethyl-cyclo-hex":
       // ASCII art with two methyls at positions 1 and 2
       `      CH2
      /    \\
 CH3-CH-     CH2
 |           |
 CH2 ---- CH-CH3
-    (1,2-dimethylcyclohexane)`,
+    (1,2-dimethyl-cyclo-hex)`,
 
     // Additional alternate names the user used earlier (safe to include)
-    "2-methylbutane":
+    "2-methyl-but":
       "CH3–CH(CH3)–CH2–CH3",
     "pent-2-ene": "CH3–CH=CH–CH2–CH3",
     "but-1-yne": "HC≡C–CH2–CH3",
-    "propan-2-ol": "CH3–CH(OH)–CH3",
-    "pentan-3-one": "CH3–CH2–CO–CH2–CH3",
-    "4-hydroxypentan-2-one": "CH3–CH(OH)–CO–CH2–CH3", // variant spelling
-    "3,3-dimethylbut-1-yne": "HC≡C–C(CH3)2–CH3",
-    "3,4-diethyl-2,5-dimethylhexane": "CH3–C(CH3)(CH2CH3)–CH(CH2CH3)–CH2–CH2–CH3", // from user alternate list
-    "pent-4-enal": "CH2=CH–CH2–CH2–CHO", // alternate short name
-    "3-methylbutan-2-one": "CH3–CH(CH3)–CO–CH3", // alternate
-    "3,3-dimethylbutanoic acid": "(CH3)3C–CH2–C(=O)–OH",
-    "cyclopentanol": `    CH2
+    "prop-2-ol": "CH3–CH(OH)–CH3",
+    "pent-3-one": "CH3–CH2–CO–CH2–CH3",
+    "4-hydroxy-pent-2-one": "CH3–CH(OH)–CO–CH2–CH3", // variant spelling
+    "3,3-dimethyl-but-1-yne": "HC≡C–C(CH3)2–CH3",
+    "3,4-diethyl-2,5-dimethyl-hex": "CH3–C(CH3)(CH2CH3)–CH(CH2CH3)–CH2–CH2–CH3", // from user alternate list
+    "pent-4-en-1-al": "CH2=CH–CH2–CH2–CHO", // alternate short name
+    "3-methyl-butan-2-one": "CH3–CH(CH3)–CO–CH3", // alternate
+    "3,3-dimethyl-but-1-oic-acid": "(CH3)3C–CH2–C(=O)–OH",
+    "cyclo-pent-1-ol": `    CH2
    /    \\
 CH2      CH2
 |   OH   |
 CH2 ---- CH2
 (cyclopentanol)`,
-    "4-oxopentanoic acid": "HOOC–CH2–CO–CH2–CH3",
-    "1,2-dimethylcyclohexane": `      CH2
+    "4-oxo-pent-1-oic-acid": "HOOC–CH2–CO–CH2–CH3",
+    "1,2-dimethyl-cyclo-hex": `      CH2
      /    \\
 CH3-CH-     CH2
 |           |
 CH2 ---- CH-CH3,
-    (1,2-dimethylcyclohexane)`,
+    (1,2-dimethyl-cyclo-hex)`,
 
-    "2-methylbutane": 
+    "2-methyl-but": 
   "CH3–CH(CH3)–CH2–CH3",
 
 "pent-2-ene": 
@@ -369,49 +365,49 @@ CH2 ---- CH-CH3,
 "but-1-yne": 
   "HC≡C–CH2–CH3",
 
-"propan-2-ol": 
+"prop-2-ol": 
   "CH3–CH(OH)–CH3",
 
-"propanal": 
+"prop-1-al": 
   "CH3–CH2–CHO",
 
-"pentan-3-one": 
+"pent-3-one": 
   "CH3–CH2–CO–CH2–CH3",
 
-"ethanoic acid": 
+"eth-oic-acid": 
   "CH3–C(=O)–OH",
 
-"3-ethyl-2-methylhexane":
+"3-ethyl-2-methyl-hex":
   "CH3–CH(CH3)–CH(CH2CH3)–CH2–CH2–CH3",
 
-"4-hydroxypentan-2-one":
+"4-hydroxy-pent-2-one":
   "CH3–CH(OH)–CO–CH2–CH3",
 
-"3,3-dimethylbut-1-yne":
+"3,3-dimethyl-but-1-yne":
   "HC≡C–C(CH3)2–CH3",
 
-"3,4-diethyl-2,5-dimethylhexane":
+"3,4-diethyl-2,5-dimethyl-hex":
   "CH3–C(CH3)(CH2CH3)–CH(CH3)(CH2CH3)–CH2–CH3",
 
-"4-methylpenta-1,3-diene":
+"4-methyl-pent-1,3-diene":
   "CH2=CH–CH=CH(CH3)–CH3",
 
-"hepta-1,6-diyne":
+"hept-1,6-diyne":
   "HC≡C–CH2–CH2–CH2–C≡CH",
 
-"2-methylpropane-1,2-diol":
+"2-methyl-prop-1,2-diol":
   "HO–CH2–CH(OH)–CH3",
 
-"pent-4-enal":
+"pent-4-en-1-al":
   "CH2=CH–CH2–CH2–CHO",
 
-"3-methylbutan-2-one":
+"3-methyl-but-2-one":
   "CH3–CH(CH3)–CO–CH3",
 
-"3,3-dimethylbutanoic acid":
+"3,3-dimethyl-but-1-oic-acid":
   "(CH3)3C–CH2–C(=O)–OH",
 
-"cyclopentanol":
+"cyclo-pent-1-ol":
 `    CH2
    /    \\
 CH2      CH2
@@ -419,16 +415,16 @@ CH2      CH2
 CH2 ---- CH2
 (cyclopentanol)`,
 
-"4-oxopentanoic acid":
+"4-oxo-pent-1-oic-acid":
   "HOOC–CH2–CO–CH2–CH3",
 
-"1,2-dimethylcyclohexane":
+"1,2-dimethyl-cyclo-hex":
 `      CH2
      /    \\
 CH3–CH–     CH2
 |           |
 CH2 ---- CH–CH3
-(1,2-dimethylcyclohexane)`,
+(1,2-dimethyl-cyclo-hex)`,
 
   };
 
