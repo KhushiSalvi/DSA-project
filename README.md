@@ -403,13 +403,12 @@ Hash tables provide a clean, scalable, and fast lookup method.
 
 - Updated functional-group detection (findFunctionalGroups())
 
-## Video explaining the whole project
-
-https://drive.google.com/drive/folders/1xyk095lzRydH2H26OW3DGB_CIEhJy6tm
-
 - Implemented large parts of name-to-structure builder (buildFromName())
 
 - General debugging & fixes
 
 - Added ketone/alcohol/aldehyde parsing (GROUP_TYPE logic)
 
+## Video explaining the whole project
+
+https://drive.google.com/drive/folders/1xyk095lzRydH2H26OW3DGB_CIEhJy6tm
